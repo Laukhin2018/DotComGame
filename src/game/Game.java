@@ -2,7 +2,7 @@ package game;
 
 public class Game {
 
-    int[] locationCell;
+    private int[] locationCell;
     int numOfHits = 0;
 
     public void setLocationCell(int[] locs){
