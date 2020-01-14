@@ -40,6 +40,14 @@ public class SimpleDotComTestDrive {
             }
 
             numGuess++;
-        }*/
+        }
+        String resultWhile = "";
+        while (!resultWhile.equals("Потопил")){
+            String stringGuess = String.valueOf(numGuess);
+            resultWhile = dot.checkYourself(stringGuess);
+            numGuess++;
+        }
+        System.out.println("Проверка завершина!!!");
+        */
     }
 }
