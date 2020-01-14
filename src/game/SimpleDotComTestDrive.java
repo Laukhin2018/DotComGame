@@ -29,7 +29,16 @@ public class SimpleDotComTestDrive {
 
             // реализация из HeadFirst
             String guess = helper.getUserInput("Введите число");
-            String result = dot.checkYourself(guess);
+
+            String result;
+            try{
+                result = dot.checkYourself(guess);
+            }
+            catch (NumberFormatException e){
+                System.out.println("Вы ввели не число " + e);
+                continue;
+            }
+
             numGuess++;
             if(result.equals("Потопил")){
                 isAlive = false;
