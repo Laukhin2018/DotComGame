@@ -10,6 +10,7 @@ public class SimpleDotComTestDrive {
         int sell = (int) (Math.random()*5);
         int[] locations = {sell, sell+1, sell+2};
 
+        GameHelper helper = new GameHelper();
         Game dot = new Game();
 
         dot.setLocationCell(locations);
@@ -18,10 +19,17 @@ public class SimpleDotComTestDrive {
 
         while (isAlive == true){
 
+            // моя реализация ввода из консоли
+            /*
             Scanner in = new Scanner(System.in);
             System.out.print("Input your cell: ");
             String sellUser = in.nextLine();
             String result = dot.checkYourself(sellUser);
+            */
+
+            // реализация из HeadFirst
+            String guess = helper.getUserInput("Введите число");
+            String result = dot.checkYourself(guess);
             numGuess++;
             if(result.equals("Потопил")){
                 isAlive = false;
