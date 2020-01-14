@@ -31,6 +31,7 @@ public class SimpleDotComTestDrive {
             String guess = helper.getUserInput("Введите число");
 
             String result;
+
             try{
                 result = dot.checkYourself(guess);
             }
@@ -39,11 +40,24 @@ public class SimpleDotComTestDrive {
                 continue;
             }
 
-            numGuess++;
+            // проверка на повтор введеного пользователем хода
+            // пока не работает!!!
+            /*int currentMove = Integer.parseInt(guess);
+            if(result.equals("Попал")){
+                for (int item : locations){
+                    if (item == currentMove){
+                        System.out.println("Нельзя вводить один и тоже ход!!! прошлый ход = " + item);
+                        continue;
+                    }
+                }
+            }*/
+
             if(result.equals("Потопил")){
                 isAlive = false;
                 System.out.println("Сайт потоплен. Вам потребовалось " + numGuess + " попыток");
             }
+
+            numGuess++;
         }
 
         /*

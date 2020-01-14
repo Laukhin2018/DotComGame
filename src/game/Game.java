@@ -1,5 +1,8 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
     private int[] locationCell;
@@ -13,6 +16,7 @@ public class Game {
 
         int guess = Integer.parseInt(stringGuess);
         String result = "Мимо";
+
 
         for (int cell : locationCell){
             if (guess == cell){
