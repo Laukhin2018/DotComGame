@@ -16,6 +16,7 @@ public class SimpleDotComTestDrive {
         dot.setLocationCell(locations);
 
         boolean isAlive = true;
+        int moveLast = 10 + (int) (Math.random()*100000);
 
         while (isAlive == true){
 
@@ -30,9 +31,26 @@ public class SimpleDotComTestDrive {
             // реализация из HeadFirst
             String guess = helper.getUserInput("Введите число");
 
+            // проверка на число
             String result;
-
+            int moveCurrent;
             try{
+                // проверка на повтор введеного пользователем хода
+                // ошибка еще не устранена
+                moveCurrent = Integer.parseInt(guess);
+                if (moveCurrent == moveLast){
+                    for (int item : locations){
+                        if (item == moveCurrent){
+                            System.out.println("Нельзя вводить один и тоже ход!!! текущий ход = " + moveCurrent + " равен ходу введеном в прошлом " + item);
+                            break;
+                        }
+                        else {
+                            System.out.println("Вы уже вводили это число");
+                            break;
+                        }
+                    }
+                    continue;
+                }
                 result = dot.checkYourself(guess);
             }
             catch (NumberFormatException e){
@@ -40,24 +58,14 @@ public class SimpleDotComTestDrive {
                 continue;
             }
 
-            // проверка на повтор введеного пользователем хода
-            // пока не работает!!!
-            /*int currentMove = Integer.parseInt(guess);
-            if(result.equals("Попал")){
-                for (int item : locations){
-                    if (item == currentMove){
-                        System.out.println("Нельзя вводить один и тоже ход!!! прошлый ход = " + item);
-                        continue;
-                    }
-                }
-            }*/
-
+            // завершение игры
             if(result.equals("Потопил")){
                 isAlive = false;
                 System.out.println("Сайт потоплен. Вам потребовалось " + numGuess + " попыток");
             }
 
             numGuess++;
+            moveLast = moveCurrent;
         }
 
         /*
