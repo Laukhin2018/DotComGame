@@ -6,7 +6,7 @@ import java.util.List;
 public class Game {
 
     private int[] locationCell;
-    int numOfHits = 0;
+    int numOfHits = 0; // количечтво точных попаданий
 
     public void setLocationCell(int[] locs){
         locationCell = locs;
