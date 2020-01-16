@@ -8,6 +8,11 @@ public class InputChecks {
     public void setMovesAllGame (String guess){
         try {
             int guessInt = Integer.parseInt(guess);
+            boolean numExists = movesAllGame.contains(guessInt);
+            if (numExists == true){
+                return;
+            }
+
             movesAllGame.add(guessInt);
         }
         catch (NumberFormatException e) {
