@@ -3,9 +3,18 @@ package game;
 import java.util.ArrayList;
 
 public class InputChecks {
-    ArrayList<Integer> movesAllGame = new ArrayList<Integer>();
+    private ArrayList<Integer> movesAllGame = new ArrayList<Integer>();
 
-    //public void setMovesAllGame
+    public void setMovesAllGame (String guess){
+        try {
+            int guessInt = Integer.parseInt(guess);
+            movesAllGame.add(guessInt);
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Вы ввели не число " + e);
+        }
+
+    }
 
     // проверка на повтор введеного пользователем хода
     public boolean checkRepeatedGuess(String numCheck){
@@ -14,7 +23,7 @@ public class InputChecks {
 
         for (int item : movesAllGame){
             if (item == num){
-                System.out.println("Вы уже вводили это число " + numCheck + ". Придумайте другое!");
+                System.out.println("Вы уже вводили число " + numCheck + ". Придумайте другое!");
                 numMatch = false;
                 break;
             }

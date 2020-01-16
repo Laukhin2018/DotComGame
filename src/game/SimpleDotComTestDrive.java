@@ -18,7 +18,6 @@ public class SimpleDotComTestDrive {
         dot.setLocationCell(locations);
 
         boolean isAlive = true;
-
         while (isAlive == true){
             // реализация из HeadFirst, с помощью класса GameHelper
             String guess = helper.getUserInput("Введите число");
@@ -46,8 +45,7 @@ public class SimpleDotComTestDrive {
                 System.out.println("Сайт потоплен. Вам потребовалось " + numGuess + " попыток");
             }
 
-            int intGuess = Integer.parseInt(guess);
-            checker.movesAllGame.add(intGuess);
+            checker.setMovesAllGame(guess);
             numGuess++; // колличество сделанных ходов
         }
 
