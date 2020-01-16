@@ -6,19 +6,19 @@ public class InputChecks {
     private ArrayList<Integer> movesAllGame = new ArrayList<Integer>();
 
     public void setMovesAllGame (String guess){
-        try {
-            int guessInt = Integer.parseInt(guess);
-            boolean numExists = movesAllGame.contains(guessInt);
-            if (numExists == true){
-                return;
-            }
 
-            movesAllGame.add(guessInt);
-        }
-        catch (NumberFormatException e) {
-            System.out.println("Вы ввели не число " + e);
+        boolean numChecked = checkOnNum(guess);
+        if (numChecked == false){
+            return;
         }
 
+        int guessInt = Integer.parseInt(guess);
+        boolean numExists = movesAllGame.contains(guessInt);
+        if (numExists == true){
+            return;
+        }
+
+        movesAllGame.add(guessInt);
     }
 
     // проверка на повтор введеного пользователем хода
