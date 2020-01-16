@@ -1,7 +1,7 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class SimpleDotComTestDrive {
 
@@ -13,52 +13,32 @@ public class SimpleDotComTestDrive {
 
         GameHelper helper = new GameHelper();
         Game dot = new Game();
+        InputChecks checker = new InputChecks();
 
         dot.setLocationCell(locations);
 
         boolean isAlive = true;
-        ArrayList<Integer> movesAllGame = new ArrayList<Integer>();
 
         while (isAlive == true){
-
-            // моя реализация ввода из консоли
-            /*
-            Scanner in = new Scanner(System.in);
-            System.out.print("Input your cell: ");
-            String sellUser = in.nextLine();
-            String result = dot.checkYourself(sellUser);
-            */
-
             // реализация из HeadFirst, с помощью класса GameHelper
             String guess = helper.getUserInput("Введите число");
 
             // проверка на число
-            String result;
-            int moveCurrent;
-            try{
-                moveCurrent = Integer.parseInt(guess);
-            }
-            catch (NumberFormatException e){
-                System.out.println("Вы ввели не число " + e);
+            boolean isNum = checker.checkOnNum(guess);
+            if (isNum == false){
                 numGuess++; // колличество сделанных ходов
                 continue;
             }
 
-            // проверка на повтор введеного пользователем хода
-            boolean sameGuess = false;
-            for (int item : movesAllGame){
-                if (item == moveCurrent){
-                    System.out.println("Вы уже вводили это число " + moveCurrent + ". Придумайте другое!");
-                    sameGuess = true;
-                    break;
-                }
-            }
-            if (sameGuess){
+            // проверка на однинаковые ввод
+            boolean sameGuess = checker.checkRepeatedGuess(guess);
+            if (sameGuess == false){
                 numGuess++; // колличество сделанных ходов
                 continue;
             }
 
-            result = dot.checkYourself(guess);
+            // проверяем попадание по сайту
+            String result = dot.checkYourself(guess);
 
             // завершение игры
             if(result.equals("Потопил")){
@@ -66,7 +46,8 @@ public class SimpleDotComTestDrive {
                 System.out.println("Сайт потоплен. Вам потребовалось " + numGuess + " попыток");
             }
 
-            movesAllGame.add(moveCurrent);
+            int intGuess = Integer.parseInt(guess);
+            checker.movesAllGame.add(intGuess);
             numGuess++; // колличество сделанных ходов
         }
 

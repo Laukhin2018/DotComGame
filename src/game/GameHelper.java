@@ -1,6 +1,7 @@
 package game;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class GameHelper {
     public String getUserInput(String prompt){
@@ -15,5 +16,13 @@ public class GameHelper {
             System.out.println("IOException: " + e);
         }
         return inputLine;
+    }
+
+    // моя реализация ввода из консоли
+    public  String myGetUserInut(String prompt){
+        Scanner in = new Scanner(System.in);
+        System.out.print("Input your cell: ");
+        prompt = in.nextLine();
+        return prompt;
     }
 }
